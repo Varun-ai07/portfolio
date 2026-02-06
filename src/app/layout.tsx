@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   // Google Search Console Verification (from your old index.html)
   verification: {
     google: "-YjMtYwwCmzr4PONWyz3oE7IQ9Bpt1jmS-bL_q8m26k",
+    other: {
+    "msvalidate.01": "24FCDD1B740DD2925700B20D484D1135"
+  }
   },
   
   // Open Graph (Facebook, LinkedIn)
