@@ -181,7 +181,7 @@ export const PROJECTS: Project[] = [
         category: "Finance & AI",
         icon: <CloudLightning size={40} className="text-[#00F3FF]" />,
         techStack: ["Solidity", "Python", "The Graph", "Chainlink"],
-        status: "Mainnet Live",
+        status: "Maintenance Mode",
         statusColor: "#00F3FF"
     },
     {
@@ -190,7 +190,35 @@ export const PROJECTS: Project[] = [
         category: "Cryptography",
         icon: <Cpu size={40} className="text-[#A3FF00]" />,
         techStack: ["Rust", "C++", "NIST PQC", "OpenSSL"],
-        status: "Production Ready",
+        status: "Private Repository",
         statusColor: "#A3FF00"
     }
+    {
+        title: "Quasar Security AI",
+        description: "Universal cybersecurity assistant with RAG-powered documentation analysis across 50+ security tools and multi-agent workflows for threat intelligence.",
+        category: "Cybersecurity",
+        icon: <ShieldCheck size={40} className="text-[#FF00EA]" />,
+        techStack: ["RAG", "LangChain", "Multi-Agent", "Security"],
+        status: "Private",
+        statusColor: "#FF00EA"
+    },
+    {
+        title: "WeatherGuard AI",
+        description: "AI-powered disaster response system with real-time weather monitoring, predictive analytics, and automated emergency alerts.",
+        category: "AI Analytics",
+        icon: <CloudLightning size={40} className="text-[#00F3FF]" />,
+        techStack: ["Python", "ML", "APIs", "Analytics"],
+        status: "Production",
+        statusColor: "#00F3FF"
+    },
+    {
+        title: "AI Agent Suite",
+        description: "Collection of intelligent agents including voice AI, Telegram bot, and documentation crawlers powered by LLMs and RAG systems.",
+        category: "Agentic AI",
+        icon: <Cpu size={40} className="text-[#A3FF00]" />,
+        techStack: ["LLMs", "RAG", "Voice AI", "Agents"],
+        status: "Multiple Repos",
+        statusColor: "#A3FF00"
+    }
+    
 ];
