@@ -127,6 +127,8 @@ export interface Project {
     techStack: string[];
     status: string;
     statusColor: string;
+    url?: string;
+
 }
 
 export const PROJECTS: Project[] = [
@@ -137,7 +139,8 @@ export const PROJECTS: Project[] = [
         icon: <Brain size={40} className="text-[#A3FF00]" />,
         techStack: ["TensorFlow", "ViT", "CNN", "Medical Imaging"],
         status: "Research Phase",
-        statusColor: "#A3FF00"
+        statusColor: "#A3FF00",
+        url: "https://github.com/Varun-ai07/brain-tumor-ai"
     },
     {
         title: "Medical Consent AI",
@@ -155,7 +158,8 @@ export const PROJECTS: Project[] = [
         icon: <Atom size={40} className="text-[#00D4FF]" />,
         techStack: ["Qiskit", "PyTorch", "GNN", "Bayesian"],
         status: "Active Development",
-        statusColor: "#00D4FF"
+        statusColor: "#00D4FF",
+        url: "https://github.com/Varun-ai07/QuantaBO"
     },
     {
         title: "NeuroChain Auth",
@@ -209,7 +213,8 @@ export const PROJECTS: Project[] = [
         icon: <CloudLightning size={40} className="text-[#00F3FF]" />,
         techStack: ["Python", "ML", "APIs", "Analytics"],
         status: "Production",
-        statusColor: "#00F3FF"
+        statusColor: "#00F3FF",
+        url: "https://github.com/Varun-ai07/WeatherGuard-AI"
     },
     {
         title: "AI Agent Suite",
@@ -218,7 +223,8 @@ export const PROJECTS: Project[] = [
         icon: <Cpu size={40} className="text-[#A3FF00]" />,
         techStack: ["LLMs", "RAG", "Voice AI", "Agents"],
         status: "Multiple Repos",
-        statusColor: "#A3FF00"
+        statusColor: "#A3FF00",
+        url: "https://github.com/Varun-ai07?tab=repositories"
     }
     
 ];

@@ -20,6 +20,7 @@ interface Project {
   techStack: string[];
   status: string;
   statusColor: string;
+  url?: string;
 }
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
@@ -31,6 +32,12 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     setMousePos({ x, y });
+  };
+
+  const handleClick = () => {
+    if (project.url) {
+      window.open(project.url, '_blank', 'noopener,noreferrer');
+    }
   };
 
   const itemVariants = {
@@ -59,7 +66,8 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
         setIsHovered(false);
         setMousePos({ x: 0, y: 0 });
       }}
-      className="group relative bg-[#0D0D0D]/40 backdrop-blur-xl border border-[#ffffff08] p-6 sm:p-10 transition-all duration-700 hover:border-[#A3FF00]/30 hover:bg-[#111111]/60 overflow-hidden rounded-[4px]"
+      onClick={handleClick}
+      className={`group relative bg-[#0D0D0D]/40 backdrop-blur-xl border border-[#ffffff08] p-6 sm:p-10 transition-all duration-700 hover:border-[#A3FF00]/30 hover:bg-[#111111]/60 overflow-hidden rounded-[4px] ${project.url ? 'cursor-pointer' : 'cursor-default'}`}
     >
       {/* Vertical Left Side Bar (Sequential - Once) with Neon Glow */}
       <div className="absolute left-0 top-0 bottom-0 w-[4px] overflow-hidden">
@@ -363,8 +371,6 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
     </motion.div>
   );
 };
-
-
 
 const FeaturedGallery = () => {
   const [isAnimating, setIsAnimating] = useState(false);
