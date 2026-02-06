@@ -192,7 +192,7 @@ export const PROJECTS: Project[] = [
         techStack: ["Rust", "C++", "NIST PQC", "OpenSSL"],
         status: "Private Repository",
         statusColor: "#A3FF00"
-    }
+    },
     {
         title: "Quasar Security AI",
         description: "Universal cybersecurity assistant with RAG-powered documentation analysis across 50+ security tools and multi-agent workflows for threat intelligence.",
