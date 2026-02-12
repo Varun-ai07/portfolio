@@ -34,14 +34,13 @@ jobs:
             echo "Error: No export directory found"
             exit 1
           fi
-          
+
           # Clone the target repo with PAT
           git clone https://x-access-token:${DEPLOY_TOKEN}@github.com/Varun-ai07/Varun-ai07.github.io.git deploy-target
-          
-          # Clear and copy new files
-          rm -rf deploy-target/*
-          cp -r "$DEPLOY_DIR"/* deploy-target/
-          
+
+          # Use rsync to copy all files and folders, including hidden and nested ones
+          rsync -av --delete "$DEPLOY_DIR"/ deploy-target/
+
           # Commit and push
           cd deploy-target
           git config user.email "actions@github.com"
