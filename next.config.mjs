@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // Enable static export for GitHub Pages
+    output: 'export',
+
     // Enable React strict mode for better development
     reactStrictMode: true,
 
