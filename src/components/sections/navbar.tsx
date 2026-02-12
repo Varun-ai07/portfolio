@@ -1,10 +1,31 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { motion, useScroll, useMotionValueEvent, useSpring } from "framer-motion";
+import { usePerformance } from '@/hooks/use-performance';
 
 export default function Navbar() {
   const [time, setTime] = useState<string>("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const { scrollY } = useScroll();
+  const isLite = usePerformance();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 150) {
+      setIsHidden(true);
+    } else {
+      setIsHidden(false);
+    }
+  });
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     const updateDateTime = () => {
@@ -34,7 +55,16 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 h-[68px] flex items-center justify-between px-6 md:px-10 bg-black/80 backdrop-blur-md border-b border-[#333333]/50">
+      <motion.nav
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: "-100%" },
+        }}
+        animate={isHidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className={`fixed top-0 left-0 w-full z-50 h-[68px] flex items-center justify-between px-6 md:px-10 border-b border-[#333333]/50 ${isLite ? 'bg-black' : 'bg-black/80 backdrop-blur-md'
+          }`}
+      >
         {/* Left: Dynamic Time */}
         <div className="flex-1 hidden md:flex">
           <div className="text-[12px] font-sans font-normal text-white tabular-nums opacity-80">
@@ -88,7 +118,13 @@ export default function Navbar() {
             {time.split(",")[1]?.trim()}
           </div>
         </div>
-      </nav>
+
+        {/* Global Scroll Progress Bar */}
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#A3FF00] origin-left z-50"
+          style={{ scaleX }}
+        />
+      </motion.nav>
 
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-lg transition-all duration-500 md:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
@@ -99,7 +135,7 @@ export default function Navbar() {
               href={link.href}
               onClick={() => setIsMenuOpen(false)}
               className="text-[24px] font-bold uppercase tracking-[0.1em] text-white hover:text-[#A3FF00] transition-all duration-300"
-              style={{ 
+              style={{
                 transitionDelay: isMenuOpen ? `${index * 100}ms` : '0ms',
                 transform: isMenuOpen ? 'translateY(0)' : 'translateY(20px)',
                 opacity: isMenuOpen ? 1 : 0

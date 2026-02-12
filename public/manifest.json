@@ -1,0 +1,40 @@
+{
+    "name": "VARUN P - AI Architect & Quantum Computing Researcher",
+    "short_name": "VARUN P",
+    "description": "Building next-generation intelligent systems at the intersection of AI, Quantum Computing, and Blockchain Technology",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#050505",
+    "theme_color": "#00F3FF",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/globe.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "technology",
+        "portfolio",
+        "ai",
+        "blockchain"
+    ],
+    "screenshots": [],
+    "shortcuts": [
+        {
+            "name": "Portfolio",
+            "short_name": "Work",
+            "description": "View my portfolio",
+            "url": "/#featured",
+            "icons": [
+                {
+                    "src": "/globe.svg",
+                    "sizes": "any"
+                }
+            ]
+        }
+    ],
+    "prefer_related_applications": false
+}

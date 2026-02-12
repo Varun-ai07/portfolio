@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -50,6 +52,8 @@
 
   --font-sans: "Inter", sans-serif;
   --font-display: "Inter", sans-serif;
+  --font-professional: "Plus Jakarta Sans", sans-serif;
+  --font-unique: "Space Grotesk", sans-serif;
 
   --radius-lg: 0px;
   --radius-md: 0px;
@@ -62,14 +66,17 @@
     from {
       height: 0;
     }
+
     to {
       height: var(--radix-accordion-content-height);
     }
   }
+
   @keyframes accordion-up {
     from {
       height: var(--radix-accordion-content-height);
     }
+
     to {
       height: 0;
     }
@@ -77,6 +84,7 @@
 }
 
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -119,14 +127,32 @@
   html {
     scroll-behavior: smooth;
     background-color: #000000;
+    cursor: none;
+    height: 100%;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: "Inter", sans-serif;
+    height: 100%;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  label {
+    cursor: none !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display font-extrabold uppercase tracking-tighter;
     line-height: 0.9;
   }
@@ -145,12 +171,124 @@
     max-width: 1440px;
   }
 
+  /* Custom Neon Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1a1a1a;
+    border-radius: 0px;
+    border: 1px solid #333333;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #A3FF00;
+    box-shadow: 0 0 15px #A3FF00;
+  }
+
+  /* Smooth scroll for the whole page */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #333333 #000000;
+  }
+
   .font-eyebrow {
-    @apply text-[14px] font-medium uppercase tracking-[0.2em] text-primary;
+    @apply font-bold uppercase tracking-[0.4em] text-primary;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 12px;
   }
 
   .font-body {
-    @apply text-[18px] font-normal leading-[1.6] text-muted-foreground;
+    @apply font-light leading-[1.8] text-muted-foreground tracking-wide;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 16px;
+  }
+
+  .font-professional {
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+
+  .font-unique {
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  /* Impressive Interactive Typography */
+  .text-gradient-neon {
+    background: linear-gradient(135deg, #A3FF00 0%, #00F3FF 50%, #A3FF00 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .text-glow-neon {
+    text-shadow:
+      0 0 10px rgba(163, 255, 0, 0.5),
+      0 0 20px rgba(163, 255, 0, 0.3),
+      0 0 30px rgba(163, 255, 0, 0.2),
+      0 0 40px rgba(163, 255, 0, 0.1);
+    transition: text-shadow 0.3s ease;
+  }
+
+  .text-glow-neon:hover {
+    text-shadow:
+      0 0 15px rgba(163, 255, 0, 0.8),
+      0 0 30px rgba(163, 255, 0, 0.6),
+      0 0 45px rgba(163, 255, 0, 0.4),
+      0 0 60px rgba(163, 255, 0, 0.2);
+  }
+
+  .text-shimmer {
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes gradient-shift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .text-split-gradient {
+    background: linear-gradient(to right, #FFFFFF 50%, #A3FF00 50%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background-position 0.3s ease;
+    background-size: 200% 100%;
+    background-position: 0% 0%;
+  }
+
+  .text-split-gradient:hover {
+    background-position: -100% 0%;
   }
 
   .viewfinder-corner {
@@ -161,10 +299,33 @@
     pointer-events: none;
   }
 
-  .viewfinder-tl { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
-  .viewfinder-tr { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
-  .viewfinder-bl { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
-  .viewfinder-br { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+  .viewfinder-tl {
+    top: 0;
+    left: 0;
+    border-top-width: 1px;
+    border-left-width: 1px;
+  }
+
+  .viewfinder-tr {
+    top: 0;
+    right: 0;
+    border-top-width: 1px;
+    border-right-width: 1px;
+  }
+
+  .viewfinder-bl {
+    bottom: 0;
+    left: 0;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+  }
+
+  .viewfinder-br {
+    bottom: 0;
+    right: 0;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+  }
 }
 
 @layer base {
@@ -177,7 +338,7 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .acid-gradient-overlay {
     background: linear-gradient(180deg, rgba(163, 255, 0, 0.15) 0%, rgba(0, 0, 0, 0) 100%);
   }
@@ -185,4 +346,25 @@
   .hover-reveal-image {
     @apply transition-transform duration-700 ease-out hover:scale-105;
   }
+}
+
+/* Ultimate Hide Next.js Dev Tools */
+[data-nextjs-dialog-overlay],
+#data-nextjs-toast-wrapper,
+[data-nextjs-toast-wrapper],
+#next-dev-overlay,
+.next-dev-overlay,
+portal,
+#nextjs-portal,
+#next-build-watcher,
+#next-static-indicator,
+[id^="nextjs-"],
+[class^="nextjs-"],
+[id^="__next-"],
+[class^="__next-"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  z-index: -9999 !important;
 }

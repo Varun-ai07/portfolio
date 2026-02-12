@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ABOUT_DATA } from "@/lib/constants";
+import { SectionHeader } from "@/components/ui/section-header";
 
 /**
  * AboutIntro Component
@@ -10,8 +12,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const AboutIntro = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const text =
-    "I architect intelligent systems that bridge theoretical research and production deployment. My work spans from optimizing quantum circuits with graph neural networks to building AI-powered platforms with blockchain verification.";
+  const text = ABOUT_DATA.highlightText;
 
   const words = text.split(" ");
 
@@ -24,13 +25,20 @@ const AboutIntro = () => {
   return (
     <section
       ref={containerRef}
+      style={{ position: 'relative' }}
       id="about"
-      className="relative w-full bg-[#000000] py-[160px] flex items-center justify-center overflow-hidden"
+      className="relative w-full bg-[#000000] py-[120px] md:py-[180px] flex items-center justify-center overflow-hidden"
     >
       <div className="container px-6 md:px-20 max-w-[1440px] mx-auto">
-        <div className="flex flex-col items-center">
+        <SectionHeader
+          eyebrow="Mission & Philosophy"
+          title="The Architect"
+          className="mb-16 md:mb-20"
+        />
+
+        <div className="flex flex-col items-start">
           <div className="w-full max-w-[1100px]">
-            <p className="flex flex-wrap text-left text-[32px] md:text-[56px] lg:text-[64px] font-bold leading-[1.1] tracking-[-0.03em] uppercase transition-colors">
+            <p className="flex flex-wrap text-left text-[28px] md:text-[48px] lg:text-[56px] font-bold leading-[1.1] tracking-[-0.03em] uppercase transition-colors font-unique">
               {words.map((word, i) => {
                 const start = i / words.length;
                 const end = start + 1 / words.length;
@@ -58,10 +66,18 @@ const Word: React.FC<WordProps> = ({ children, range, progress }) => {
   const opacity = useTransform(progress, range, [0.15, 1]);
 
   return (
-    <span className="relative mr-[0.3em] my-[0.1em]">
+    <span className="relative mr-[0.3em] my-[0.1em] perspective-[1000px]">
       <motion.span
         style={{ opacity }}
-        className="text-white inline-block"
+        className="text-white inline-block cursor-default transition-all duration-300"
+        whileHover={{
+          opacity: 1,
+          scale: 1.1,
+          y: -5,
+          color: "#A3FF00",
+          textShadow: "0 0 20px rgba(163, 255, 0, 0.6)"
+        }}
+        transition={{ type: "spring", stiffness: 200, damping: 10 }}
       >
         {children}
       </motion.span>
