@@ -23,7 +23,18 @@ jobs:
 
       - name: Deploy to Varun-ai07.github.io
         run: |
-          cd out
+          # Check which directory exists (out or .next)
+          if [ -d "out" ]; then
+            DEPLOY_DIR="out"
+          elif [ -d ".next/static" ]; then
+            DEPLOY_DIR=".next"
+          else
+            echo "Error: No export directory found"
+            exit 1
+          fi
+          
+          # Deploy
+          cd "$DEPLOY_DIR"
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git init
