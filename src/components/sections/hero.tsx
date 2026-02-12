@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring, useAnimate,
 import { HERO_DATA } from '@/lib/constants';
 import { ScanningTitle } from '@/components/ui/section-header';
 import { usePerformance } from '@/hooks/use-performance';
+import SplineBackground from '@/components/ui/spline-background';
 
 const MagneticButton = ({ children, href, variant = 'primary', className = "" }: { children: React.ReactNode, href: string, variant?: 'primary' | 'secondary', className?: string }) => {
   const buttonRef = useRef<HTMLAnchorElement>(null);
@@ -103,7 +104,8 @@ const HeroSection: React.FC = () => {
       ref={containerRef}
       className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent"
     >
-      {/* Background is now global in page.tsx */}
+      {/* Background is now local to this section to stay on the first page */}
+      <SplineBackground />
 
 
 
@@ -131,7 +133,7 @@ const HeroSection: React.FC = () => {
 
         {/* Description with Character Typewriter Effect */}
         <div className="mb-8 md:mb-12 max-w-[800px]" ref={scope}>
-          <p className="text-[16px] md:text-[22px] leading-[1.6] text-white/90 font-light tracking-wide flex flex-wrap justify-center md:justify-start">
+          <p className="text-[14px] md:text-[22px] leading-[1.6] text-white/90 font-light tracking-wide flex flex-wrap justify-center md:justify-start">
             {[...HERO_DATA.description.prefix.trim().split(" "), ...HERO_DATA.description.highlightPaths.flatMap(p => p.text.split(" ").filter(w => w !== ""))].map((word, wordIndex) => {
               // Determine color for the word
               let color = "text-white";

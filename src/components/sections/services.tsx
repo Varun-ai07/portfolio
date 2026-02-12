@@ -301,7 +301,7 @@ const TechArsenal = () => {
         />
 
         {/* Categories Grid */}
-        <div ref={containerRef} className="space-y-24">
+        <div ref={containerRef} className="space-y-16 md:space-y-24">
           {TECH_STACK.map((category, catIndex) => (
             <motion.div
               key={catIndex}

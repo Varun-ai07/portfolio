@@ -38,7 +38,7 @@ const AboutIntro = () => {
 
         <div className="flex flex-col items-start">
           <div className="w-full max-w-[1100px]">
-            <p className="flex flex-wrap text-left text-[28px] md:text-[48px] lg:text-[56px] font-bold leading-[1.1] tracking-[-0.03em] uppercase transition-colors font-unique">
+            <p className="flex flex-wrap text-left text-[22px] md:text-[48px] lg:text-[56px] font-bold leading-[1.1] tracking-[-0.03em] uppercase transition-colors font-unique">
               {words.map((word, i) => {
                 const start = i / words.length;
                 const end = start + 1 / words.length;

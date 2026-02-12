@@ -20,7 +20,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     children,
     delay = 0,
     direction = 'up',
-    distance = 30
+    distance = 0
 }) => {
     const directions = {
         up: { y: distance },
@@ -42,7 +42,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
                 y: 0,
                 scale: 1
             }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-20px" }}
             transition={{
                 duration: 1,
                 delay,

@@ -14,11 +14,11 @@ export const usePerformance = () => {
 
             // Check for save-data preference
             // @ts-ignore
-            const saveData = navigator.connection?.saveData === true;
+            const saveData = (navigator.connection as any)?.saveData === true;
 
             // Check for slow connection
             // @ts-ignore
-            const isSlowConnection = navigator.connection?.effectiveType === '2g' || navigator.connection?.effectiveType === '3g';
+            const isSlowConnection = (navigator.connection as any)?.effectiveType === '2g' || (navigator.connection as any)?.effectiveType === '3g';
 
             // Enable Lite Mode if:
             // 1. Low CPU core count (<= 4)

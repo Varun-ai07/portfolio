@@ -128,13 +128,11 @@
     scroll-behavior: smooth;
     background-color: #000000;
     cursor: none;
-    height: 100%;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: "Inter", sans-serif;
-    height: 100%;
   }
 
   a,

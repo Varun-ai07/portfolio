@@ -14,28 +14,29 @@ import ScrollToTop from "@/components/ui/scroll-to-top";
 
 export default function Home() {
   return (
-    <SmoothScroll>
-      <div className="min-h-screen relative">
-        <CustomCursor />
-        <SplineBackground />
-        <Navbar />
-        <main className="relative z-10">
-          <ScrollReveal>
-            <HeroSection />
-          </ScrollReveal>
-          <ScrollReveal delay={0.2}>
-            <AboutIntro />
-          </ScrollReveal>
-          <ScrollReveal delay={0.2}>
-            <Services />
-          </ScrollReveal>
-          <ScrollReveal delay={0.2}>
-            <FeaturedGallery />
-          </ScrollReveal>
-        </main>
-        <Footer />
-        <ScrollToTop />
-      </div>
-    </SmoothScroll>
+    <>
+      <SmoothScroll>
+        <div className="min-h-screen">
+          <CustomCursor />
+          <Navbar />
+          <main className="relative z-10">
+            <ScrollReveal>
+              <HeroSection />
+            </ScrollReveal>
+            <ScrollReveal>
+              <AboutIntro />
+            </ScrollReveal>
+            <ScrollReveal>
+              <Services />
+            </ScrollReveal>
+            <ScrollReveal>
+              <FeaturedGallery />
+            </ScrollReveal>
+          </main>
+          <Footer />
+          <ScrollToTop />
+        </div>
+      </SmoothScroll>
+    </>
   );
 }
