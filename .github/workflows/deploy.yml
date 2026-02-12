@@ -35,17 +35,20 @@ jobs:
             exit 1
           fi
           
-          # Clone the target repo
+          # Clone the target repo with gh auth
           gh repo clone Varun-ai07/Varun-ai07.github.io deploy-target
           
           # Clear and copy new files
           rm -rf deploy-target/*
           cp -r "$DEPLOY_DIR"/* deploy-target/
           
-          # Commit and push
+          # Commit and push using gh CLI
           cd deploy-target
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
           git add .
           git commit -m "Auto-deploy from portfolio repo [skip ci]" || echo "No changes to commit"
-          git push origin main
+          
+          # Use HTTPS with token for authentication
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/Varun-ai07/Varun-ai07.github.io.git
+          git push -u origin main
