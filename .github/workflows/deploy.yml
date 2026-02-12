@@ -23,7 +23,7 @@ jobs:
 
       - name: Deploy to Varun-ai07.github.io
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
           # Check which directory exists (out or .next)
           if [ -d "out" ]; then
@@ -35,20 +35,17 @@ jobs:
             exit 1
           fi
           
-          # Clone the target repo with gh auth
-          gh repo clone Varun-ai07/Varun-ai07.github.io deploy-target
+          # Clone the target repo with PAT
+          git clone https://x-access-token:${DEPLOY_TOKEN}@github.com/Varun-ai07/Varun-ai07.github.io.git deploy-target
           
           # Clear and copy new files
           rm -rf deploy-target/*
           cp -r "$DEPLOY_DIR"/* deploy-target/
           
-          # Commit and push using gh CLI
+          # Commit and push
           cd deploy-target
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
           git add .
           git commit -m "Auto-deploy from portfolio repo [skip ci]" || echo "No changes to commit"
-          
-          # Use HTTPS with token for authentication
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/Varun-ai07/Varun-ai07.github.io.git
           git push -u origin main
