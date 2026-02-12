@@ -5,9 +5,24 @@ import Script from 'next/script';
 
 export const SplineBackground = () => {
     const viewerRef = useRef<any>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        const viewer = viewerRef.current;
+        let viewer = viewerRef.current;
+
+        // If we only have the container, create the spline-viewer element imperatively
+        if (!viewer && containerRef.current) {
+            const created = document.createElement('spline-viewer') as any;
+            created.setAttribute('loading-anim-type', 'spinner-small-light');
+            created.setAttribute('url', 'https://prod.spline.design/axMMX-4iP4D60a7z/scene.splinecode');
+            created.style.width = '100%';
+            created.style.height = '100%';
+            created.style.display = 'block';
+            containerRef.current.appendChild(created);
+            viewerRef.current = created;
+            viewer = created;
+        }
+
         if (!viewer) return;
 
         const hideLogo = () => {
@@ -34,13 +49,14 @@ export const SplineBackground = () => {
 
                 // 2. Target ALL anchor tags as a fallback (usually only logo exists)
                 const anchors = shadow.querySelectorAll('a');
-                anchors.forEach(a => {
-                    if (a.href.includes('spline')) {
-                        a.style.display = 'none';
-                        a.style.opacity = '0';
-                        a.style.pointerEvents = 'none';
+                for (const a of anchors) {
+                    const anchor = a as HTMLAnchorElement;
+                    if (anchor.href.includes('spline')) {
+                        anchor.style.display = 'none';
+                        anchor.style.opacity = '0';
+                        anchor.style.pointerEvents = 'none';
                     }
-                });
+                }
 
                 // 3. Inject global style into shadow DOM for persistent removal
                 if (!shadow.querySelector('#spline-no-logo')) {
@@ -104,13 +120,7 @@ export const SplineBackground = () => {
                         }
                     }
                 `}</style>
-                {/* @ts-ignore */}
-                <spline-viewer
-                    ref={viewerRef}
-                    loading-anim-type="spinner-small-light"
-                    url="https://prod.spline.design/axMMX-4iP4D60a7z/scene.splinecode"
-                    style={{ width: '100%', height: '100%', display: 'block' }}
-                ></spline-viewer>
+                <div ref={containerRef} style={{ width: '100%', height: '100%', display: 'block' }} />
             </div>
 
             {/* Gradient Overlays for readability */}
