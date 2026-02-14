@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Script from 'next/script';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useAnimate, stagger, useInView } from 'framer-motion';
 import { HERO_DATA } from '@/lib/constants';
 import { ScanningTitle } from '@/components/ui/section-header';

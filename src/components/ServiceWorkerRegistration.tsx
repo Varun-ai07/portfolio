@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect } from 'react';
 
 /**
@@ -13,7 +11,7 @@ export default function ServiceWorkerRegistration() {
         if (
             typeof window !== 'undefined' &&
             'serviceWorker' in navigator &&
-            process.env.NODE_ENV === 'production'
+            import.meta.env.PROD
         ) {
             // Register service worker
             navigator.serviceWorker
@@ -36,7 +34,6 @@ export default function ServiceWorkerRegistration() {
                                     console.log('[SW] New version available! Refresh to update.');
 
                                     // Optional: Show a notification to user
-                                    // You can dispatch a custom event here to show a toast
                                     if (window.confirm('New version available! Refresh to update?')) {
                                         window.location.reload();
                                     }

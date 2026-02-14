@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import { usePerformance } from '@/hooks/use-performance';

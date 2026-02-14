@@ -1,4 +1,4 @@
-"use client";
+
 
 import React, { useRef, useState } from 'react';
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
@@ -329,21 +329,6 @@ const TechArsenal = () => {
         </div>
       </div>
 
-      <style jsx global>{`
-        #tech-stack {
-          position: relative;
-        }
-        #tech-stack::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 80%;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, #222, transparent);
-        }
-      `}</style>
     </section>
   );
 };

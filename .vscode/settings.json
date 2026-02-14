@@ -1,0 +1,22 @@
+{
+    "css.customData": [
+        ".vscode/tailwind.json"
+    ],
+    "css.lint.unknownAtRules": "ignore",
+    "css.lint.unknownProperties": "ignore",
+    "css.lint.vendorPrefix": "ignore",
+    "css.lint.propertyIgnoredDueToDisplay": "ignore",
+    "css.validate": true,
+    "files.exclude": {
+        "dist": true,
+        "**/dist/**": true,
+        "**/*.min.css": true
+    },
+    "search.exclude": {
+        "dist": true,
+        "**/dist/**": true
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    }
+}

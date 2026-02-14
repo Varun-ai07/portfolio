@@ -1,50 +1,52 @@
-name: Deploy to GitHub Pages
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
 
 on:
+  # Runs on pushes targeting the default branch
   push:
-    branches: [main]
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  # Single deploy job since we're just deploying; no separate build job required if using simple steps
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-
+          node-version: 20
+          cache: 'npm'
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-
-      - name: Build static export
+        run: npm install
+      - name: Build
         run: npm run build
-
-      - name: Deploy to Varun-ai07.github.io
-        env:
-          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-        run: |
-          # Check which directory exists (out or .next)
-          if [ -d "out" ]; then
-            DEPLOY_DIR="out"
-          elif [ -d ".next/static" ]; then
-            DEPLOY_DIR=".next"
-          else
-            echo "Error: No export directory found"
-            exit 1
-          fi
-
-          # Clone the target repo with PAT
-          git clone https://x-access-token:${DEPLOY_TOKEN}@github.com/Varun-ai07/Varun-ai07.github.io.git deploy-target
-
-          # Use rsync to copy all files and folders, including hidden and nested ones
-          rsync -av --delete "$DEPLOY_DIR"/ deploy-target/
-
-          # Commit and push
-          cd deploy-target
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-          git add .
-          git commit -m "Auto-deploy from portfolio repo [skip ci]" || echo "No changes to commit"
-          git push -u origin main
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
