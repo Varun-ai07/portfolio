@@ -9,10 +9,9 @@
     "orientation": "portrait-primary",
     "icons": [
         {
-            "src": "/globe.svg",
+            "src": "/favicon_old.ico",
             "sizes": "any",
-            "type": "image/svg+xml",
-            "purpose": "any maskable"
+            "type": "image/x-icon"
         }
     ],
     "categories": [
@@ -27,10 +26,10 @@
             "name": "Portfolio",
             "short_name": "Work",
             "description": "View my portfolio",
-            "url": "/#featured",
+            "url": "/#projects",
             "icons": [
                 {
-                    "src": "/globe.svg",
+                    "src": "/favicon_old.ico",
                     "sizes": "any"
                 }
             ]

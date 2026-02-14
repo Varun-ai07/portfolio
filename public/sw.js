@@ -16,7 +16,7 @@ const STATIC_ASSETS = [
     '/',
     '/manifest.json',
     '/file.svg',
-    '/globe.svg',
+    '/favicon_old.ico',
     '/next.svg',
     '/vercel.svg',
     '/window.svg',

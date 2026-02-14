@@ -323,7 +323,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
         <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/0 group-hover:border-[#A3FF00]/40 transition-all duration-500 transform group-hover:translate-x-[2px] group-hover:translate-y-[2px]" />
 
         {/* Icon */}
-        <div className="mb-8 transition-all duration-700 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(163,255,0,0.3)]">
+        <div className="mb-8 text-white transition-all duration-700 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(163,255,0,0.3)]">
           {project.icon}
         </div>
 
