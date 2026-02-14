@@ -1,0 +1,33 @@
+{
+    "version": 1.1,
+    "atDirectives": [
+        {
+            "name": "@theme",
+            "description": "Define your custom theme variables for Tailwind CSS v4."
+        },
+        {
+            "name": "@utility",
+            "description": "Define custom utilities in Tailwind CSS v4."
+        },
+        {
+            "name": "@variant",
+            "description": "Define custom variants in Tailwind CSS v4."
+        },
+        {
+            "name": "@layer",
+            "description": "Define cascade layers in CSS."
+        },
+        {
+            "name": "@property",
+            "description": "Define custom CSS properties with types and inheritance."
+        },
+        {
+            "name": "@config",
+            "description": "Specify a configuration file for Tailwind CSS."
+        },
+        {
+            "name": "@import",
+            "description": "Import other CSS files or the Tailwind library."
+        }
+    ]
+}
