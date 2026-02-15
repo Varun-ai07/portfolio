@@ -51,6 +51,12 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
     }
   };
 
+  const handleClick = () => {
+    if (project.githubUrl) {
+      window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <motion.div
       variants={itemVariants}
@@ -60,7 +66,8 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
         setIsHovered(false);
         setMousePos({ x: 0, y: 0 });
       }}
-      className={`group relative border border-[#ffffff08] p-6 sm:p-10 transition-all duration-700 hover:border-[#A3FF00]/30 hover:bg-[#111111]/60 overflow-hidden rounded-[4px] ${isLite
+      onClick={handleClick}
+      className={`group relative border border-[#ffffff08] p-6 sm:p-10 transition-all duration-700 hover:border-[#A3FF00]/30 hover:bg-[#111111]/60 overflow-hidden rounded-[4px] ${project.githubUrl ? 'cursor-pointer' : ''} ${isLite
         ? 'bg-[#0D0D0D]' // Opaque background for Lite Mode (no blur cost)
         : 'bg-[#0D0D0D]/40 backdrop-blur-md md:backdrop-blur-xl' // Frosted glass for High Perf
         }`}
