@@ -11,7 +11,7 @@
         "preview": "vite preview",
         "start": "vite preview",
         "lint": "eslint .",
-        "deploy": "gh-pages -d dist",
+        "deploy": "gh-pages -d dist -r https://github.com/Varun-ai07/Varun-ai07.github.io.git -b main",
         "predeploy": "npm run build"
     },
     "dependencies": {
