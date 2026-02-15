@@ -413,8 +413,8 @@
 
 /* Spline Background Responsive */
 .spline-wrapper {
-  --spline-offset: -15%;
-  --spline-scale: 1;
+  --spline-offset: -5%;
+  --spline-scale: 1.25;
 }
 
 @media (max-width: 768px) {
