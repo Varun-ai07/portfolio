@@ -19,6 +19,7 @@ interface Project {
   techStack: string[];
   status: string;
   statusColor: string;
+  githubUrl?: string;
 }
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {

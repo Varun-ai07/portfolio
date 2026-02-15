@@ -127,6 +127,7 @@ export interface Project {
     techStack: string[];
     status: string;
     statusColor: string;
+    githubUrl?: string;
 }
 
 export const PROJECTS: Project[] = [
@@ -136,8 +137,18 @@ export const PROJECTS: Project[] = [
         category: "Healthcare AI",
         icon: <Stethoscope size={40} className="text-[#A3FF00]" />,
         techStack: ["React", "FastAPI", "LLMs", "Solidity"],
-        status: "Private Repository",
+        status: "Private Development",
         statusColor: "#A3FF00"
+    },
+    {
+        title: "BrainTumor Detection AI",
+        description: "Automated brain tumor detection and classification from MRI scans using hybrid CNN-Vision Transformer architecture with 94% accuracy.",
+        category: "Medical AI",
+        icon: <Brain size={40} className="text-[#FF00EA]" />,
+        techStack: ["CNN", "Vision Transformer", "TensorFlow", "FastAPI"],
+        status: "Public Repository",
+        statusColor: "#FF00EA",
+        githubUrl: "https://github.com/Varun-ai07/brain-tumor-ai"
     },
     {
         title: "QuantaBO",
@@ -145,8 +156,9 @@ export const PROJECTS: Project[] = [
         category: "Quantum Computing",
         icon: <Atom size={40} className="text-[#00D4FF]" />,
         techStack: ["Qiskit", "PyTorch", "GNN", "Bayesian"],
-        status: "Active Development",
-        statusColor: "#00D4FF"
+        status: "Active Research",
+        statusColor: "#00D4FF",
+        githubUrl: "https://github.com/Varun-ai07/QuantaBO"
     },
     {
         title: "NeuroChain Auth",
@@ -183,5 +195,47 @@ export const PROJECTS: Project[] = [
         techStack: ["Rust", "C++", "NIST PQC", "OpenSSL"],
         status: "Production Ready",
         statusColor: "#A3FF00"
+    },
+
+    {
+        title: "WeatherGuard AI",
+        description: "AI-powered weather monitoring and disaster response system that analyzes real-time data and generates coordinated emergency response plans.",
+        category: "Environmental AI",
+        icon: <CloudLightning size={40} className="text-[#00F3FF]" />,
+        techStack: ["Python", "Data Analysis", "Emergency Response", "API"],
+        status: "Public Project",
+        statusColor: "#00F3FF",
+        githubUrl: "https://github.com/Varun-ai07/WeatherGuard-ai"
+    },
+    {
+        title: "Conversational AI Agents",
+        description: "A unified LLM-powered conversational AI platform supporting multimodal voice interaction and Telegram-based chat. Features speech recognition (STT), text-to-speech (TTS), stateful conversations, real-time tool integration (weather, stock data), and scalable agent architecture.",
+        category: "Multimodal & Communication AI",
+        icon: <Cpu size={40} className="text-[#A3FF00]" />,
+        techStack: ["Python", "Node.js", "LLMs", "STT/TTS", "Telegram API", "Real-time Tools"],
+        status: "Active & Public Repositories",
+        statusColor: "#A3FF00",
+        githubUrl: "https://github.com/Varun-ai07?tab=repositories"
+    },
+    {
+        title: "Agentic RAG System",
+        description: "An end-to-end agentic Retrieval-Augmented Generation (RAG) platform that crawls technical documentation, ingests single or multiple documents, builds vector indexes, and enables intelligent question answering using LLM-driven reasoning.",
+        category: "Agentic AI & Information Retrieval",
+        icon: <ShieldCheck size={40} className="text-[#A3FF00]" />,
+        techStack: ["Python", "LangChain", "LLMs", "VectorDB", "RAG", "Web Crawling"],
+        status: "Public Repositories",
+        statusColor: "#A3FF00",
+        githubUrl: "https://github.com/Varun-ai07"
+    },
+
+    {
+        title: "Globe-Trotter",
+        description: "Experimental project exploring spatial intelligence and interactive global mapping visualizations.",
+        category: "Interactive Design",
+        icon: <Atom size={40} className="text-[#00D4FF]" />,
+        techStack: ["React", "Three.js", "Maps API"],
+        status: "Experimental",
+        statusColor: "#00D4FF",
+        githubUrl: "https://github.com/Varun-ai07/Globe-Trotter"
     }
 ];
