@@ -48,6 +48,9 @@ const MagneticButton = ({ children, href, variant = 'primary', className = "" }:
   );
 };
 
+import { useIsMobile } from '@/hooks/use-mobile';
+import VideoBackground from '@/components/ui/video-background';
+
 /**
  * Hero Section for Varun P Portfolio
  * 
@@ -65,6 +68,7 @@ const HeroSection: React.FC = () => {
   const scale = useTransform(scrollY, [0, 800], [1, 1.15]); // Slightly reduced scale for performance
   const [scope, animate] = useAnimate();
   const isLite = usePerformance();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const sequence = async () => {
@@ -104,7 +108,7 @@ const HeroSection: React.FC = () => {
       className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent"
     >
       {/* Background is now local to this section to stay on the first page */}
-      <SplineBackground />
+      {isMobile ? <VideoBackground /> : <SplineBackground />}
 
 
 

@@ -48,7 +48,7 @@
         "@react-three/drei": "^10.4.4",
         "@react-three/fiber": "^9.0.0-alpha.8",
         "@splinetool/react-spline": "^4.1.0",
-        "@splinetool/runtime": "^1.12.52",
+        "@splinetool/runtime": "^1.12.57",
         "@tabler/icons-react": "^3.35.0",
         "@tailwindcss/typography": "^0.5.19",
         "@tsparticles/engine": "^3.8.1",
