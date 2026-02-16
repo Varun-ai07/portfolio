@@ -1,0 +1,12 @@
+
+# Allow all crawlers full access
+User-agent: *
+Allow: /
+
+# Block common sensitive files and folders (none in this public portfolio, but template for future)
+# Disallow: /private/
+# Disallow: /tmp/
+# Disallow: /admin/
+
+# Point to sitemap
+Sitemap: https://varun-ai07.github.to/sitemap.xml
