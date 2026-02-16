@@ -23,7 +23,6 @@ import {
     Github,
     Linkedin,
     Mail,
-    Twitter,
     Stethoscope,
     Atom,
     Brain,
@@ -31,6 +30,7 @@ import {
     CloudLightning,
     Cpu
 } from 'lucide-react';
+import { FaXTwitter } from 'react-icons/fa6';
 
 export const HERO_DATA = {
     eyebrow: "AI Architect • Quantum Computing • Web3",
@@ -110,7 +110,7 @@ export const SOCIAL_LINKS = [
     { name: "Email", icon: <Mail className="w-6 h-6" />, href: "mailto:jp.vxrun@gmail.com" },
     { name: "GitHub", icon: <Github className="w-6 h-6" />, href: "https://github.com/Varun-ai07" },
     { name: "LinkedIn", icon: <Linkedin className="w-6 h-6" />, href: "https://linkedin.com/in/jp-varun" },
-    { name: "Twitter", icon: <Twitter className="w-6 h-6" />, href: "https://x.com/VarunNebula" }
+    { name: "X", icon: <FaXTwitter className="w-6 h-6" />, href: "https://x.com/VarunNebula" }
 ];
 
 export const FOOTER_DATA = {
@@ -137,8 +137,9 @@ export const PROJECTS: Project[] = [
         category: "Healthcare AI",
         icon: <Stethoscope size={40} className="text-[#A3FF00]" />,
         techStack: ["React", "FastAPI", "LLMs", "Solidity"],
-        status: "Private Development",
-        statusColor: "#A3FF00"
+        status: "Public Repository",
+        statusColor: "#A3FF00",
+        githubUrl: "https://github.com/Varun-ai07/PoC"
     },
     {
         title: "BrainTumor Detection AI",
@@ -184,7 +185,7 @@ export const PROJECTS: Project[] = [
         category: "Finance & AI",
         icon: <CloudLightning size={40} className="text-[#00F3FF]" />,
         techStack: ["Solidity", "Python", "The Graph", "Chainlink"],
-        status: "Mainnet Live",
+        status: "Research Phase",
         statusColor: "#00F3FF"
     },
     {
@@ -193,7 +194,7 @@ export const PROJECTS: Project[] = [
         category: "Cryptography",
         icon: <Cpu size={40} className="text-[#A3FF00]" />,
         techStack: ["Rust", "C++", "NIST PQC", "OpenSSL"],
-        status: "Production Ready",
+        status: "Private Development",
         statusColor: "#A3FF00"
     },
 

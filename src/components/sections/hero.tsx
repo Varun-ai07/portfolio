@@ -114,29 +114,29 @@ const HeroSection: React.FC = () => {
 
       {/* Content Layer */}
       <motion.div
-        className="relative z-20 w-full max-w-[1440px] px-6 md:px-20 pt-32 pb-20 md:pt-0 md:pb-0 flex flex-col items-center md:items-start text-center md:text-left [will-change:transform,opacity]"
+        className="relative z-20 w-full max-w-[1440px] px-6 md:px-20 pt-32 pb-20 md:pt-0 md:pb-0 flex flex-col items-center md:items-start text-center md:text-left md:mr-18 [will-change:transform,opacity]"
         initial={{ scale: 1.4, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         style={{ scale }}
       >
         {/* Eyebrow */}
-        <div className="mb-4 md:mb-8 animate-in fade-in slide-in-from-left-4 duration-1000">
+        <div className="mb-4 md:mb-8 animate-in fade-in slide-in-from-left-4 duration-1000 md:mr-18">
           <span className="font-eyebrow !font-sans text-[#A3FF00] text-[12px] md:text-[14px]">
             {HERO_DATA.eyebrow}
           </span>
         </div>
 
         {/* Main Heading */}
-        <div className="mb-6 md:mb-8 animate-in fade-in slide-in-from-left-8 duration-1000 w-full">
+        <div className="mb-6 md:mb-8 animate-in fade-in slide-in-from-left-8 duration-1000 w-full md:mr-18">
           <h1 className="text-white drop-shadow-2xl">
             <ScanningTitle title={HERO_DATA.title} showEffect={false} />
           </h1>
         </div>
 
         {/* Description with Character Typewriter Effect */}
-        <div className="mb-8 md:mb-12 max-w-[800px]" ref={scope}>
-          <p className="text-[14px] md:text-[22px] leading-[1.6] text-white/90 font-light tracking-wide flex flex-wrap justify-center md:justify-start">
+        <div className="mb-8 md:mb-12 max-w-[800px] md:mr-18" ref={scope}>
+          <p className="text-[14px] md:text-[22px] leading-[1.6] text-white/90 font-light tracking-wide flex flex-wrap justify-start">
             {[...HERO_DATA.description.prefix.trim().split(" "), ...HERO_DATA.description.highlightPaths.flatMap(p => p.text.split(" ").filter(w => w !== ""))].map((word, wordIndex) => {
               // Determine color for the word
               let color = "text-white";
@@ -157,14 +157,14 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* Education Tag */}
-        <div className="mb-10 md:mb-12 animate-in fade-in slide-in-from-left-10 duration-1000">
+        <div className="mb-10 md:mb-12 animate-in fade-in slide-in-from-left-10 duration-1000 md:mr-18">
           <p className="text-[10px] md:text-[12px] uppercase tracking-[0.3em] text-white/40 font-bold font-mono">
             {HERO_DATA.education}
           </p>
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 animate-in fade-in slide-in-from-left-12 duration-1000 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 animate-in fade-in slide-in-from-left-12 duration-1000 w-full sm:w-auto md:mr-18">
           <MagneticButton href="#tech-stack" className="w-full sm:w-auto">
             Tech Arsenal
           </MagneticButton>
@@ -175,7 +175,7 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* Code Block Visual with White Side Glow */}
-        <div className="hidden lg:block absolute right-20 top-1/2 -translate-y-1/2">
+        <div className="hidden lg:block absolute right-4 top-1/2 -translate-y-1/2">
           <motion.div
             className="relative bg-[#0B0B0B]/90 border border-[#333333] p-6 backdrop-blur-sm max-w-[400px] overflow-hidden"
             initial={{ scale: 1.5, opacity: 0, x: 50 }}

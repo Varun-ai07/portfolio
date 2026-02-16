@@ -73,7 +73,7 @@ export const SplineBackground = () => {
             <div
                 className="absolute inset-0 z-0 w-full h-full transition-transform duration-1000 spline-wrapper"
                 style={{
-                    transform: 'translateX(var(--spline-offset, -5%)) scale(var(--spline-scale, 1.25))'
+                    transform: 'translateX(var(--spline-offset, 75%)) scale(var(--spline-scale, 1.25))'
                 }}
             >
                 <spline-viewer

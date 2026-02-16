@@ -14,7 +14,7 @@ const VideoBackground: React.FC = () => {
                 muted
                 loop
                 playsInline
-                className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover translate-y-[-20%] sm:translate-y-0"
                 style={{ filter: 'brightness(0.4)' }}
             >
                 <source src="/world.mp4" type="video/mp4" />
