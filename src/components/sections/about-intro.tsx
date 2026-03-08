@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ABOUT_DATA } from "@/lib/constants";
 import { SectionHeader } from "@/components/ui/section-header";
+import { ParticleNetwork } from "@/components/ui/particle-network";
 
 /**
  * AboutIntro Component
@@ -27,9 +28,12 @@ const AboutIntro = () => {
       ref={containerRef}
       style={{ position: 'relative' }}
       id="about"
-      className="relative w-full bg-[#000000] py-[120px] md:py-[180px] flex items-center justify-center overflow-hidden"
+      className="relative w-full bg-transparent py-[120px] md:py-[180px] flex items-center justify-center overflow-hidden"
     >
-      <div className="container px-6 md:px-20 max-w-[1440px] mx-auto">
+      {/* Particle Network Background */}
+      <ParticleNetwork />
+      
+      <div className="container px-6 md:px-20 max-w-[1440px] mx-auto relative z-10">
         <SectionHeader
           eyebrow="Mission & Philosophy"
           title="The Architect"

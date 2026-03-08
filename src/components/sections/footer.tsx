@@ -1,6 +1,7 @@
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SOCIAL_LINKS, FOOTER_DATA } from '@/lib/constants';
+import { ParticleNetwork } from '@/components/ui/particle-network';
 
 const Footer = () => {
   return (
@@ -10,9 +11,12 @@ const Footer = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
-      className="bg-black text-white w-full pt-20 pb-10 overflow-hidden"
+      className="relative bg-transparent text-white w-full pt-20 pb-10 overflow-hidden"
     >
-      <div className="container mx-auto px-6 md:px-20 max-w-[1440px]">
+      {/* Particle Network Background */}
+      <ParticleNetwork />
+      
+      <div className="container mx-auto px-6 md:px-20 max-w-[1440px] relative z-10">
 
         {/* Bottom Connect Section: Centered Buttons */}
         <div className="flex flex-col items-center justify-center mb-32">

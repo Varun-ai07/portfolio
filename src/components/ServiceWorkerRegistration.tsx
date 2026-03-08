@@ -17,8 +17,6 @@ export default function ServiceWorkerRegistration() {
             navigator.serviceWorker
                 .register('/sw.js', { scope: '/' })
                 .then((registration) => {
-                    console.log('[SW] Service Worker registered successfully:', registration.scope);
-
                     // Check for updates every hour
                     setInterval(() => {
                         registration.update();
@@ -31,8 +29,6 @@ export default function ServiceWorkerRegistration() {
                             newWorker.addEventListener('statechange', () => {
                                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
                                     // New service worker available, prompt user to refresh
-                                    console.log('[SW] New version available! Refresh to update.');
-
                                     // Optional: Show a notification to user
                                     if (window.confirm('New version available! Refresh to update?')) {
                                         window.location.reload();
@@ -49,7 +45,6 @@ export default function ServiceWorkerRegistration() {
             // Listen for messages from service worker
             navigator.serviceWorker.addEventListener('message', (event) => {
                 if (event.data && event.data.type === 'CACHE_CLEARED') {
-                    console.log('[SW] Cache cleared successfully');
                 }
             });
 
@@ -71,7 +66,6 @@ export default function ServiceWorkerRegistration() {
             (window as any).clearAppCache = () => {
                 if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
                     navigator.serviceWorker.controller.postMessage({ type: 'CLEAR_CACHE' });
-                    console.log('[SW] Cache clear requested');
                 }
             };
         }

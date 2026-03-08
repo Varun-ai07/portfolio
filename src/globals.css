@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+html,
+body,
+#root {
+  position: relative;
+}
+
 
 @theme {
   --color-background: #000000;

@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring, useAnimate, stagger, useInView } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, useAnimate, stagger } from 'framer-motion';
 import { HERO_DATA } from '@/lib/constants';
 import { ScanningTitle } from '@/components/ui/section-header';
-import { usePerformance } from '@/hooks/use-performance';
-import SplineBackground from '@/components/ui/spline-background';
 
 const MagneticButton = ({ children, href, variant = 'primary', className = "" }: { children: React.ReactNode, href: string, variant?: 'primary' | 'secondary', className?: string }) => {
   const buttonRef = useRef<HTMLAnchorElement>(null);
@@ -48,9 +46,6 @@ const MagneticButton = ({ children, href, variant = 'primary', className = "" }:
   );
 };
 
-import { useIsMobile } from '@/hooks/use-mobile';
-import VideoBackground from '@/components/ui/video-background';
-
 /**
  * Hero Section for Varun P Portfolio
  * 
@@ -62,13 +57,9 @@ import VideoBackground from '@/components/ui/video-background';
  */
 const HeroSection: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
-  const isInView = useInView(containerRef, { amount: 0.1 });
-  const [splineLoaded, setSplineLoaded] = useState(false);
   const { scrollY } = useScroll();
   const scale = useTransform(scrollY, [0, 800], [1, 1.15]); // Slightly reduced scale for performance
   const [scope, animate] = useAnimate();
-  const isLite = usePerformance();
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     const sequence = async () => {
@@ -107,11 +98,6 @@ const HeroSection: React.FC = () => {
       ref={containerRef}
       className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent"
     >
-      {/* Background is now local to this section to stay on the first page */}
-      {isMobile ? <VideoBackground /> : <SplineBackground />}
-
-
-
       {/* Content Layer */}
       <motion.div
         className="relative z-20 w-full max-w-[1440px] px-6 md:px-20 pt-32 pb-20 md:pt-0 md:pb-0 flex flex-col items-center md:items-start text-center md:text-left md:mr-18 [will-change:transform,opacity]"

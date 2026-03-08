@@ -41,7 +41,6 @@ export default function ResourcePrefetcher() {
                     link.href = href;
                     link.as = 'document';
                     document.head.appendChild(link);
-                    console.log('[Prefetch] Prefetching:', href);
                 }
             } catch (err) {
                 // Invalid URL, skip
@@ -108,6 +107,4 @@ function prefetchCriticalResources() {
         link.href = resource;
         document.head.appendChild(link);
     });
-
-    console.log('[Prefetch] Critical resources prefetched');
 }

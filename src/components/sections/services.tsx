@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { TECH_STACK } from '@/lib/constants';
 import { SectionHeader } from '@/components/ui/section-header';
+import { ParticleNetwork } from '@/components/ui/particle-network';
 
 interface TechItem {
   name: string;
@@ -291,13 +292,17 @@ const TechArsenal = () => {
   const isContainerInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="tech-stack" className="bg-black py-24 md:py-40 overflow-hidden">
-      <div className="container mx-auto px-6 md:px-20 max-w-[1440px]">
+    <section id="tech-stack" className="relative bg-transparent py-24 md:py-40 overflow-hidden">
+      {/* Particle Network Background */}
+      <ParticleNetwork />
+      
+      <div className="container mx-auto px-6 md:px-20 max-w-[1440px] relative z-10">
         {/* Section Header */}
         <SectionHeader
           eyebrow="Technical Proficiency"
           title="Tech Arsenal"
           description="Architecting the future with a production-grade stack across AI synthesis, quantum theory, and decentralized protocols."
+          descriptionHighlightWords={["AI", "synthesis", "quantum", "theory", "decentralized", "protocols"]}
         />
 
         {/* Categories Grid */}

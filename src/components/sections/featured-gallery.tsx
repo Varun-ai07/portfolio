@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { PROJECTS } from '@/lib/constants';
 import { SectionHeader } from '@/components/ui/section-header';
 import { usePerformance } from '@/hooks/use-performance';
+import { ParticleNetwork } from '@/components/ui/particle-network';
 
 /**
  * FeaturedGallery Component - Varun's Projects
@@ -409,13 +410,17 @@ const FeaturedGallery = () => {
   };
 
   return (
-    <section ref={sectionRef} id="projects" className="bg-black py-20 md:py-40">
-      <div className="container mx-auto px-6 md:px-20">
+    <section ref={sectionRef} id="projects" className="relative bg-transparent py-20 md:py-40 overflow-hidden">
+      {/* Particle Network Background */}
+      <ParticleNetwork />
+      
+      <div className="container mx-auto px-6 md:px-20 relative z-10">
         {/* Section Header */}
         <SectionHeader
           eyebrow="SELECTED WORKS"
           title="Featured Projects"
           description="Architecting production-grade intelligent systems for real-world impact and complex challenges."
+          descriptionHighlightWords={["production-grade", "intelligent", "impact", "complex", "challenges"]}
         />
 
         {/* Projects Grid */}

@@ -29,6 +29,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
     return (
         <motion.div
+            className="relative"
             initial={{
                 opacity: 0,
                 ...directions[direction],

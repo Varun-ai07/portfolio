@@ -63,11 +63,181 @@
     "image": "https://varun-ai07.github.to/og-image.png"
   }
   </script>
+
+  <!-- Loading Screen Styles -->
+  <style>
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+
+    #loading-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-icon {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      animation: spin 1.2s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(163, 255, 0, 0.35));
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      margin-top: 24px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #A3FF00;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .loading-percentage {
+      margin-top: 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: #A3FF00;
+      letter-spacing: 0.05em;
+    }
+
+    .loading-subtitle {
+      margin-top: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #666666;
+      letter-spacing: 0.1em;
+    }
+
+    .progress-bar {
+      width: 300px;
+      height: 2px;
+      background: #1a1a1a;
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #A3FF00, #7acc00);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+  </style>
 </head>
 
 <body class="antialiased">
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <img class="loader-icon" src="/favicon_old.ico" alt="Loading" />
+    <div class="loading-text">Loading</div>
+    <div class="loading-percentage" id="loading-percentage">0%</div>
+    <div class="loading-subtitle" id="loading-status">Initializing Systems...</div>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="progress-bar-fill"></div>
+    </div>
+  </div>
+
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
+
+  <!-- Loading Progress Manager -->
+  <script>
+    // Global loading progress manager
+    window.loadingProgress = {
+      current: 0,
+      stages: {
+        init: { weight: 10, done: false },
+        fonts: { weight: 15, done: false },
+        react: { weight: 15, done: false },
+        spline: { weight: 60, done: false }
+      },
+      updateProgress: function(stage) {
+        if (this.stages[stage]) {
+          this.stages[stage].done = true;
+          this.calculate();
+        }
+      },
+      calculate: function() {
+        let progress = 0;
+        for (let stage in this.stages) {
+          if (this.stages[stage].done) {
+            progress += this.stages[stage].weight;
+          }
+        }
+        this.current = Math.min(progress, 100);
+        this.render();
+        if (this.current >= 100) {
+          this.complete();
+        }
+      },
+      render: function() {
+        const percentage = document.getElementById('loading-percentage');
+        const progressBar = document.getElementById('progress-bar-fill');
+        const status = document.getElementById('loading-status');
+        
+        if (percentage) percentage.textContent = Math.floor(this.current) + '%';
+        if (progressBar) progressBar.style.width = this.current + '%';
+        
+        // Update status text
+        if (status) {
+          if (this.current < 25) status.textContent = 'Loading Resources...';
+          else if (this.current < 50) status.textContent = 'Initializing Interface...';
+          else if (this.current < 90) status.textContent = 'Loading 3D Environment...';
+          else status.textContent = 'Almost Ready...';
+        }
+      },
+      complete: function() {
+        setTimeout(() => {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.classList.add('fade-out');
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+            }, 500);
+          }
+        }, 200);
+      }
+    };
+
+    // Initial stage
+    setTimeout(() => window.loadingProgress.updateProgress('init'), 100);
+    
+    // Fonts loaded
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        window.loadingProgress.updateProgress('fonts');
+      });
+    } else {
+      setTimeout(() => window.loadingProgress.updateProgress('fonts'), 500);
+    }
+
+    // Fallback timeout - force complete after 5 seconds
+    setTimeout(() => {
+      if (window.loadingProgress && window.loadingProgress.current < 100) {
+        console.log('Forcing loading completion after 5 seconds');
+        window.loadingProgress.updateProgress('spline');
+      }
+    }, 5000);
+  </script>
 </body>
 
 </html>

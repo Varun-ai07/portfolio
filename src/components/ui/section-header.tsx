@@ -5,6 +5,7 @@ interface SectionHeaderProps {
     eyebrow: string;
     title: string;
     description?: string;
+    descriptionHighlightWords?: string[];
     align?: 'left' | 'center' | 'right';
     className?: string;
     showScanningEffect?: boolean;
@@ -51,6 +52,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     eyebrow,
     title,
     description,
+    descriptionHighlightWords = [],
     align = 'left',
     className = "",
     showScanningEffect = true
@@ -60,6 +62,12 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         center: 'text-center items-center',
         right: 'text-right items-end'
     }[align];
+
+    const highlightSet = new Set(
+        descriptionHighlightWords.map((word) =>
+            word.toLowerCase().replace(/[^a-z0-9]/g, '')
+        )
+    );
 
     return (
         <div className={`flex flex-col ${alignmentClass} mb-24 ${className}`}>
@@ -82,7 +90,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
             {/* Description */}
             {description && (
                 <motion.div
-                    className="max-w-2xl text-[#888888] text-[18px] md:text-[20px] leading-relaxed font-light font-professional"
+                    className="max-w-2xl text-[18px] md:text-[20px] leading-relaxed font-light font-professional"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: false }}
@@ -90,10 +98,14 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
                         visible: { transition: { staggerChildren: 0.05, delayChildren: 0.3 } }
                     }}
                 >
-                    {description.split(" ").map((word, i) => (
+                    {description.split(" ").map((word, i) => {
+                        const normalizedWord = word.toLowerCase().replace(/[^a-z0-9]/g, '');
+                        const isHighlighted = highlightSet.has(normalizedWord);
+
+                        return (
                         <motion.span
                             key={i}
-                            className="inline-block mr-[0.25em]"
+                            className={`inline-block mr-[0.25em] ${isHighlighted ? 'text-[#A3FF00]' : 'text-white/90'}`}
                             variants={{
                                 hidden: { opacity: 0, y: 10, filter: "blur(5px)" },
                                 visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.5, ease: "easeOut" } }
@@ -106,7 +118,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
                         >
                             {word}
                         </motion.span>
-                    ))}
+                    )})}
                 </motion.div>
             )}
         </div>
